@@ -18,7 +18,6 @@ class SignInActivity : AppCompatActivity() {
         }
         binding?.tvForgotPassword?.setOnClickListener {
             startActivity(Intent(this,ForgetPasswordActivity::class.java))
-            finish()
         }
 
     }
