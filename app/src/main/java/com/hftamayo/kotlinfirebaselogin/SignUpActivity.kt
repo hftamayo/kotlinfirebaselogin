@@ -40,8 +40,11 @@ class SignUpActivity : BaseActivity() {
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     }
-                    showToast(this, "User Id not created. Try again later")
-                    hideProgressBar()
+                    else{
+                        showToast(this, "User Id not created. Try again later")
+                        hideProgressBar()
+                    }
+
                 }
         }
     }
@@ -53,7 +56,7 @@ class SignUpActivity : BaseActivity() {
                 false
             }
             TextUtils.isEmpty(email) && !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
-                binding?.tilEmail?.error = "Enter valid email adrress"
+                binding?.tilEmail?.error = "Enter valid email address"
                 false
             }
             else -> {true}
