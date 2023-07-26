@@ -59,6 +59,10 @@ class SignUpActivity : BaseActivity() {
                 binding?.tilEmail?.error = "Enter valid email address"
                 false
             }
+            TextUtils.isEmpty(password) -> {
+                binding?.tilPassword?.error = "Enter password"
+                false
+            }
             else -> {true}
         }
 
