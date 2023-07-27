@@ -26,14 +26,28 @@ class SignInActivity : BaseActivity() {
         binding?.tvForgotPassword?.setOnClickListener {
             startActivity(Intent(this,ForgetPasswordActivity::class.java))
         }
-
+        binding?.btnSignIn?.setOnClickListener {
+            signInUser()
+        }
     }
 
-    private fun sinInUser(){
+    private fun signInUser(){
         val email = binding?.etSinInEmail?.text.toString()
         val password = binding?.etSinInPassword?.text.toString()
         if(validateForm(email, password)) {
+            showProgressBar()
             auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if(task.isSuccessful){
+                        startActivity(Intent(this,MainActivity::class.java))
+                        finish()
+                        hideProgressBar()
+                    }
+                    else {
+                        showToast(this, "Invalid user or password, please try again")
+                        hideProgressBar()
+                    }
+                }
         }
 
     }
@@ -52,7 +66,4 @@ class SignInActivity : BaseActivity() {
         }
 
     }
-
-
-
 }
